@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+    <div class="ai-background"></div>
+    <div class="grid-overlay"></div>
+    
+    <div class="container">
+        <div class="form-container">
+            <h1 class="cyber-title">Analysis Results</h1>
+            
+            <!-- Processed Video Section -->
+            <div class="result-section">
+                <h2>Processed Video</h2>
+                <div class="video-container">
+                    <video width="640" height="480" controls aria-label="Processed Video">
+                        <source src="{{ url_for('static', filename='processed/' + video_path) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            
+            <!-- Action Distribution and Insights Section -->
+            <div class="visualization-grid">
+                <div class="result-section">
+                    <h2>Action Distribution</h2>
+                    <div class="chart-container">
+                        <img src="{{ url_for('static', filename='processed/' + chart_path) }}" alt="Action Pie Chart" aria-label="Action Distribution Chart">
+                    </div>
+                </div>
+                
+                <div class="result-section">
+                    <h2>AI Insights</h2>
+                    <div class="result-content">
+                        <p>{{ suggestions | safe }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="{{ url_for('upload') }}" class="glow-button" aria-label="New Analysis">New Analysis</a>
+                <a href="#" onclick="window.print()" class="glow-button" aria-label="Export Report">Export Report</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

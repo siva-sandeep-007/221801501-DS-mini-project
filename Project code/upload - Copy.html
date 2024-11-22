@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video - AI Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- AI Background Animation -->
+    <div class="ai-background">
+        <div class="network-animation"></div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <!-- AI Icon -->
+            <div class="ai-icon">
+                <div class="circle-pulse"></div>
+                <div class="brain-waves"></div>
+            </div>
+
+            <h1>Upload Classroom Video</h1>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form id="uploadForm" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                <div class="upload-area">
+                    <input type="file" name="file" id="file" class="file-input" accept=".mp4,.avi,.mov" required>
+                    <label for="file" class="file-label">
+                        <span class="upload-icon"></span>
+                        <span class="upload-text">Select Video File</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="glow-button">Start Analysis</button>
+            </form>
+
+            <!-- Loading animation -->
+            <div id="loading" class="loading-container" style="display: none;">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                </div>
+                <p class="loading-text">Processing video with AI...</p>
+            </div>
+
+            <div class="switch-form">
+                <a href="{{ url_for('index') }}">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = function() {
+            document.getElementById('loading').style.display = 'block';
+            return true;
+        };
+
+        // Display selected filename
+        document.getElementById('file').onchange = function() {
+            const fileName = this.files[0]?.name || 'Select Video File';
+            this.nextElementSibling.querySelector('.upload-text').textContent = fileName;
+        };
+    </script>
+</body>
+</html>

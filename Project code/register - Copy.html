@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Classroom Analysis - Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+    <div class="ai-background">
+        <div class="network-animation"></div>
+    </div>
+    
+    <div class="container">
+        <div class="form-container">
+            <div class="ai-icon">
+                <div class="circle-pulse"></div>
+                <div class="brain-waves"></div>
+            </div>
+            <h1>Create Account</h1>
+            <form method="POST" action="{{ url_for('register') }}">
+                <div class="input-group">
+                    <input type="text" name="name" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Password</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="confirmPassword" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Confirm Password</label>
+                </div>
+                <button type="submit" class="glow-button">Register</button>
+            </form>
+            <p class="switch-form">
+                Already have an account? <a href="{{ url_for('login') }}">Login</a>
+            </p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

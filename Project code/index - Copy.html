@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Analysis Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- AI Background Animation -->
+    <div class="ai-background">
+        <div class="network-animation"></div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <!-- AI Icon -->
+            <div class="ai-icon">
+                <div class="circle-pulse"></div>
+                <div class="brain-waves"></div>
+            </div>
+
+            <h1>Welcome, {{ user }}</h1>
+
+            <!-- Main Content -->
+            <div class="input-group">
+                <a href="{{ url_for('upload') }}" class="glow-button">
+                    Upload Video for Analysis
+                </a>
+            </div>
+
+            <div class="switch-form">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
